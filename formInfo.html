@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="#">
+	<script type="text/javascript">
+
+
+		// Automatic calculation of the renewal date of the concession
+		function calculRenouvellement() {
+					var ConcessionSaisie 		= document.getElementById("C_Date_Engagement").value;
+					var AnneeConcessionSaisie 	= Number(ConcessionSaisie.substring(6,10));
+
+					var TypeConcession 			= document.getElementById("C_Duree").value;
+					var CalculAnneeRenouvelle 	= 0;
+
+					if (TypeConcession == "15 ans") {
+						 			CalculAnneeRenouvelle = AnneeConcessionSaisie + 15;
+					}
+					if (TypeConcession == "30 ans") {
+						 		CalculAnneeRenouvelle = AnneeConcessionSaisie + 30;
+					}
+					if (TypeConcession == "50 ans") {
+						 	CalculAnneeRenouvelle = AnneeConcessionSaisie + 50;
+					}
+					if (TypeConcession == "100 ans") {
+								CalculAnneeRenouvelle = AnneeConcessionSaisie + 100;
+					}
+					if (TypeConcession == "Perpétuelle") {
+						 		CalculAnneeRenouvelle = "";
+					}
+					if (TypeConcession == "") {
+								CalculAnneeRenouvelle = "";
+					}
+					if (AnneeConcessionSaisie == "") {
+							CalculAnneeRenouvelle = "";
+					}
+
+				document.getElementById("C_Renew").value = CalculAnneeRenouvelle;
+	 	}
+</script>
+</head>
+
+<body>
+	<div class="formContainer">
+		<form action="#" method="POST">
+			<div class="vertical">
+				<label for="nomConcessionnaire">Nom du concessionnaire
+					<input type="text" class="infoConcessions" name="nom_concession" value="'{$nom}'">
+				</label>
+			</div>
+			<div class="vertical">
+				<label for="numero">Numéro de concession
+					<input type="text" class="infoConcessions" name="num_concession" value="'{$numero}'">
+				</label>
+			</div>
+			<div class="vertical">
+				<label for="dateConcession">Date d'engagement
+					<input type="text" class="infoConcessions" name="date_engagement" id="C_Date_Engagement" value="" onblur="calculRenouvellement()">
+				</label>
+			</div>
+			<div class="vertical">
+				<label for="Penterrees">Personnes enterrées
+					<textarea class="infoConcessions" name="personnes_enterrees" rows="5" cols="33" value=""></textarea>
+				</label>
+			</div>
+
+
+
+
+			<label for="typeConcession">Type de concession
+				<select class="infoConcessions" name="typeConcession" id="typeConcession">
+				 <option value="simple">Simple</option>
+				 <option value="double">Double</option>
+				 <option value="cavurne">Cavurne</option> <!--or use a datalist ??-->
+				</select>
+			</label>
+			<label for="date">Date de fin de concession
+				 <input type="text" class="infoConcessions" name="dateFin" id="dateFin">
+			</label>
+			<label for="dateRenew">Date de renouvellement
+				<input type="text" class="infoConcessions" name="C_Renew" id="C_Renew">
+			</label>
+			<label for="duree">Durée de la concession
+				<select type="text" class="infoConcessions" name="dateFin" id="dateFin" onblur="calculRenouvellement()">
+					 <option value="15ans">15 ans</option>
+					<option value="30ans">30 ans</option>
+					<option value="50ans">50 ans</option>
+					<option value="100ans">100 ans</option>
+					<option value="perpetuelle">Perpétuelle</option>
+				 </select>
+			</label>
+			<label for="prix">Prix
+				 <input type="text" class="infoConcessions" name="prixConcession" id="prixConcession">
+			</label>
+			<label for="surface">Surface en m²
+				 <input type="text" class="infoConcessions" name="surface">
+			</label>
+			<input class="boutonR" type="submit" value="Mettre à jour"/>
+		</form>
+	</div>
+
+</body>
+</html>
